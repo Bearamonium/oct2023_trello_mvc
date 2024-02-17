@@ -19,8 +19,10 @@ class CardSchema(ma.Schema):
 
     user = fields.Nested('UserSchema', only = ['name', 'email'])
 
+    comments = fields.List(fields.Nested('CommentSchema', exclude=['user']))
+
     class Meta:
-        fields = ('id', 'title', 'description', 'date', 'status', 'priority', 'user')
+        fields = ('id', 'title', 'description', 'date', 'status', 'priority', 'user', 'comments')
         ordered = True
 
 card_schema = CardSchema()
