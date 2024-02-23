@@ -7,7 +7,6 @@ from models.user import User
 from models.card import Card
 from models.comment import Comment
 
-
 db_commands = Blueprint('db', __name__)
 
 @db_commands.cli.command('create')
@@ -34,8 +33,9 @@ def seed_tables():
             password=bcrypt.generate_password_hash('123456').decode('utf-8')
         )
     ]
-
+    
     db.session.add_all(users)
+
     cards = [
         Card(
             title="Card 1",
@@ -96,7 +96,7 @@ def seed_tables():
         )
     ]
 
-    db.sesssion.add_all(comments)
+    db.session.add_all(comments)
 
     db.session.commit()
 
